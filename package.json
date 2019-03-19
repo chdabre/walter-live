@@ -3,10 +3,17 @@
   "version": "0.0.1",
   "description": "backend for walter live.",
   "scripts": {
-    "serve": "node src/index.js",
-    "start": "node src/index.js"
+    "host-install": "npm install --prefix walter-host",
+    "client-install": "npm install --prefix walter-client",
+    "host": "npm start --prefix walter-host",
+    "client": "npm start --prefix walter-client",
+
+    "start": "node src/index.js",
+    "dev": "concurrently \"npm run start\" \"npm run host\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix walter-client && npm run build --prefix walter-client && npm install --prefix walter-host &&  npm run build --prefix walter-host"
   },
   "dependencies": {
+    "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "lodash": "^4.17.11",
     "socket.io": "^2.2.0",

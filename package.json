@@ -1,0 +1,16 @@
+{
+  "name": "walter-backend",
+  "version": "0.0.1",
+  "description": "backend for walter live.",
+  "scripts": {
+    "serve": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "socket.io": "^2.2.0",
+    "uuid": "^3.3.2"
+  },
+  "main": "index.js",
+  "license": "MIT"
+}

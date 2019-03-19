@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "backend for walter live.",
   "scripts": {
-    "serve": "node src/index.js"
+    "serve": "node src/index.js",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "express": "^4.16.4",

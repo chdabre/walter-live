@@ -4,6 +4,8 @@ var app = require('express')()
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
 
+const PORT = process.env.PORT || 3000;
+
 const cards = [
   [
     "Wenn ich gut Arbeite, will ich auch gut bezahlt werden. Mit einer Ausnahme: _WALTERN_ würde ich auch gratis.",

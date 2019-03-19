@@ -10,7 +10,7 @@
 
     "start": "node src/index.js",
     "dev": "concurrently \"npm run start\" \"npm run host\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix walter-client && npm run build --prefix walter-client && npm install --prefix walter-host &&  npm run build --prefix walter-host"
+    "heroku-postbuild": "cd walter-client && yarn && yarn run build && cd ../walter-host && yarn && yarn run build"
   },
   "dependencies": {
     "concurrently": "^4.1.0",

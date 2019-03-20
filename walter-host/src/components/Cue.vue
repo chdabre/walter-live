@@ -34,8 +34,8 @@ export default {
 
 <style lang="scss" scoped>
 .number-circle {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
 
   border: 2px solid black;
   border-radius: 50%;
@@ -47,12 +47,14 @@ export default {
     width: 100%;
     margin: 0;
     text-align: center;
+    font-size: 2.25rem;
   }
 }
 
 .cue-text {
   margin-top: 0;
   line-height: 1.5em;
+  font-size: 2.25rem;
   
   & /deep/ p {
     margin: 0;

@@ -4,7 +4,7 @@
       <!-- RESULTS -->
       <mdc-layout-cell desktop=12>
         <div class="header">
-          <mdc-display typo="headline1">Runde {{ game.currentRound + 1 }} - Resultate</mdc-display>
+          <mdc-display typo="headline2"><b>Runde {{ game.currentRound + 1 }} - Resultate</b></mdc-display>
         </div>
         
         <transition v-if="currentSentence" class="cue" tag="div" appear name="component-slide" mode="out-in">
@@ -138,6 +138,7 @@ export default {
     border: 3px solid black;
     padding: 1rem 2rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
   }
 }
 

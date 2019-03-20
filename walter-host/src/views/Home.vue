@@ -4,7 +4,7 @@
     <mdc-layout-cell class="logo-column">
       <img class="logo" src="../assets/logo.png" />
 
-      <BwipCode class="qrcode" scale=5 bcid="qrcode" :text="codeUrl" />
+      <BwipCode class="qrcode" :scale="5" bcid="qrcode" :text="codeUrl" />
       <span class="m-top-1 roomid">/client/{{ roomId }}</span>
     </mdc-layout-cell>
 

@@ -4,7 +4,7 @@
       <!-- ANSWERS -->
       <mdc-layout-cell desktop=12>
         <div class="header">
-          <mdc-display typo="headline1">Runde {{ game.currentRound + 1 }}</mdc-display>
+          <mdc-display typo="headline2"><b>Runde {{ game.currentRound + 1 }}</b></mdc-display>
           <mdc-display typo="headline2"><b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-display>
         </div>
         
@@ -101,6 +101,7 @@ export default {
     border: 3px solid black;
     padding: 1rem 2rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
   }
 }
 

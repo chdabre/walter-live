@@ -90,7 +90,10 @@ b {
 .mdc-layout-grid {
   margin: 0;
   padding: 0;
-  height: 100%;
+  
+  &--100 {
+    height: 100%;
+  }
 
   &__inner {
     height: 100%;

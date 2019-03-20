@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       startDate: null,
-      showDuration: 3000,
+      showDuration: 5000,
       timeElapsed: 0
     }
   },

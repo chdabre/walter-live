@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app">  
     <template v-if="clientId !== null">
       <template v-if="playerId === null">
         <ClientOnboarding />
@@ -20,7 +20,7 @@
         </mdc-layout-cell>
       </mdc-layout-grid>
     </template>
-  </div>
+  </div> 
 </template>
 
 <script>
@@ -81,6 +81,7 @@ export default {
 
 .content {
   margin: 2rem 1rem;
+  align-items: center;
 }
 
 .logo {

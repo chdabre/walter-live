@@ -33,7 +33,8 @@ export default {
     return {
       startDate: null,
       showDuration: 8000,
-      timeElapsed: 0
+      timeElapsed: 0,
+      tInterval: null
     }
   },
   computed: {
@@ -59,11 +60,11 @@ export default {
         this.$socket.emit('nextCard', { roomId: this.$store.state.roomId })
       }, this.showDuration)
 
-      let tInterval = setInterval(tInterval => {
+      this.tInterval = setInterval(tInterval => {
         let millisElapsed = ((new Date()).getTime() - this.startDate.getTime())
         if (millisElapsed > this.showDuration) {
           this.timeElapsed = 1
-          clearInterval(tInterval)
+          clearInterval(this.tInterval)
         } else {
           this.timeElapsed = millisElapsed / this.showDuration 
         }

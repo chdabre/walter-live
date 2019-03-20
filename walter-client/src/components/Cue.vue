@@ -1,12 +1,12 @@
 <template>
   <mdc-layout-grid class="cue">
-    <mdc-layout-cell desktop=1>
+    <mdc-layout-cell desktop=1 tablet=12 phone=4>
       <div class="number-circle">
         <mdc-text typo="headline5" tag="h1">{{ number }}</mdc-text>
       </div>
     </mdc-layout-cell>
 
-    <mdc-layout-cell desktop=10>
+    <mdc-layout-cell desktop=10 tablet=12 phone=4>
       <mdc-text typo="headline6" class="cue-text"><vue-markdown>{{ template }}</vue-markdown></mdc-text>
     </mdc-layout-cell>
   </mdc-layout-grid>

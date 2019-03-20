@@ -1,6 +1,6 @@
 <template>
   <mdc-layout-grid class="content client-wrapper">
-    <mdc-layout-cell desktop=4>
+    <mdc-layout-cell desktop=6 tablet=12 phone=4>
       <mdc-text typo="headline5" tag="h2">Runde {{ game.currentRound + 1 }}</mdc-text>
       
       <template v-if="!done">

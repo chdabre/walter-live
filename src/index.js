@@ -9,6 +9,14 @@ var io = require('socket.io')(http)
 const PORT = process.env.PORT || 3000;
 
 const MAX_PLAYER_COUNT = 8
+const emptyGame = {
+  clientView: 'WaitForPlayers',
+  hostView: 'Home',
+  playersReady: false,
+  currentRound: -1,
+  ended: false,
+  rounds: []
+}
 
 let clients = []
 let rooms = {}
@@ -35,11 +43,6 @@ app.get('/client/*', (req, res) => {
 })
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../walter-host/public/index.html'))
-})
-
-
-app.get('/', (req, res) => {
-  res.send('<h1>Hi!</h1>')
 })
 
 http.listen(PORT, () => {
@@ -197,10 +200,10 @@ io.on('connection', socket => {
       room.game.ended = true
       room.game.hostView = 'ScoreBoard'
       room.game.clientView = 'noContent'
+    } else {
+      room.game.rounds.push(createRound())
+      room.game.hostView = 'RoundStart'
     }
-
-    room.game.rounds.push(createRound())
-    room.game.hostView = 'RoundStart'
 
     io.to(roomId).emit('roomUpdate', { context: 'nextCard', room })  
   } catch (e) {
@@ -297,7 +300,7 @@ io.on('connection', socket => {
       }
     }
 
-    io.to(roomId).emit('roomUpdate', { context: 'submitAnswers', room })
+    io.to(roomId).emit('roomUpdate', { context: 'submitVote', room })
   } catch (e) {
     socket.emit('err', { 
       errorType: e.name,
@@ -319,7 +322,7 @@ io.on('connection', socket => {
           console.log(`[finishRound] Sphinx ${room.players[sphinxId].name} Points +1`)
           console.log(`[finishRound] Player ${room.players[vote.vote].name} Points +1`)
           sphinxPoints++
-          room.players[vote.vote].points++
+          room.players[vote.playerId].points++
         }
         else {
           console.log(`[finishRound] Player ${room.players[vote.vote].name} Points +1`)
@@ -336,13 +339,34 @@ io.on('connection', socket => {
       room.game.hostView = 'ScoreBoard'
       room.game.clientView = 'noContent'
 
-      io.to(roomId).emit('roomUpdate', { context: 'submitAnswers', room })
+      io.to(roomId).emit('roomUpdate', { context: 'finishRound', room })
     })
   } catch (e) {
       socket.emit('err', { 
         errorType: e.name,
         errorText: `Error in [finishRound]: ${e.toString()}`
       })
+  }})
+
+  socket.on('newGame', (msg) => { try {
+    let roomId = msg.roomId
+    let room = rooms[roomId]
+
+    room.game = Object.assign({}, {
+      clientView: 'NoContent',
+      hostView: 'RoundStart',
+      playersReady: true,
+      currentRound: -1,
+      ended: false,
+      rounds: []
+    })
+
+    io.to(roomId).emit('roomUpdate', { context: 'newGame', room })
+  } catch (e) {
+      socket.emit('err', { 
+      errorType: e.name,
+      errorText: `Error in [showCues]: ${e.toString()}`
+    })
   }})
 
   socket.on('roomUpdate', (msg) => { try {
@@ -379,14 +403,7 @@ function createRoom () {
   let roomId = makeid(4)
   let room = {
     players: [],
-    game: {
-      clientView: 'WaitForPlayers',
-      hostView: 'Home',
-      playersReady: false,
-      currentRound: -1,
-      ended: false,
-      rounds: []
-    }
+    game: Object.assign({}, emptyGame)
   }
   
   rooms[roomId] = room

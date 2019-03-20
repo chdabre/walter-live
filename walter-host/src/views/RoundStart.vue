@@ -7,7 +7,7 @@
       </mdc-layout-cell>
 
       <!-- SCOREBOARD -->
-      <mdc-layout-cell desktop=6>
+      <mdc-layout-cell desktop=6 v-if="game.currentRound >= 0">
         <mdc-display typo="headline1">Runde {{ game.currentRound + 1 }}</mdc-display>
         <mdc-display typo="headline2"><b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-display>
       </mdc-layout-cell>
@@ -34,6 +34,8 @@ export default {
     }
   },
   mounted () {
+    if (this.game.currentRound === -1) this.$socket.emit('nextCard', { roomId: this.$store.state.roomId })
+
     this.startDate = new Date()
     setTimeout(() => {
       this.$socket.emit('showCues', { roomId: this.$store.state.roomId })

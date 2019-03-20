@@ -1,6 +1,6 @@
 <template>
   <mdc-layout-grid class="content client-wrapper">
-    <mdc-layout-cell>
+    <mdc-layout-cell desktop=5 tablet=12 phone=4>
       <template v-if="!sphinx && done !== currentVotingStep && currentVotingStep < currentRound.sentences.length">
         <mdc-text typo="headline5" tag="h2">Runde {{ game.currentRound + 1 }} - <b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-text>
         <mdc-text typo="headline5" tag="h2"><b>Welche Antwort ist DER WAHRE WALTER?</b></mdc-text>

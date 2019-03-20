@@ -1,6 +1,6 @@
 <template>
   <mdc-layout-grid class="content client-wrapper">
-    <mdc-layout-cell v-if="player">
+    <mdc-layout-cell v-if="player" desktop=5 tablet=12 phone=4>
       <!-- LOGO -->
       <img class="logo" src="../assets/logo.png" />
 

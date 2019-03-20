@@ -288,7 +288,7 @@ io.on('connection', socket => {
         }
       })
 
-      if (sphinxPoints < room.players.length) {
+      if (sphinxPoints < room.players.length - 1) {
         console.log(`[finishRound] Sphinx ${room.players[sphinxId].name} gets ${sphinxPoints} Points.`)
         room.players[sphinxId].points += sphinxPoints
       } else {

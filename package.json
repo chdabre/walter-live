@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "backend for walter live.",
   "scripts": {
-    "host-install": "npm install --prefix walter-host",
-    "client-install": "npm install --prefix walter-client",
+    "host-install": "cd walter-host && yarn",
+    "client-install": "cd walter-client && yarn",
     "host": "npm start --prefix walter-host",
     "client": "npm start --prefix walter-client",
 

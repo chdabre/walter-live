@@ -3,6 +3,9 @@
     <!-- LOGO -->
     <mdc-layout-cell class="logo-column">
       <img class="logo" src="../assets/logo.png" />
+
+      <BwipCode class="qrcode" scale=5 bcid="qrcode" :text="codeUrl" />
+      <span class="m-top-1 roomid">/client/{{ roomId }}</span>
     </mdc-layout-cell>
 
     <!-- PLAYERS -->
@@ -24,7 +27,6 @@
 
       <!-- QR CODE -->
       <div class="qrcode-entry m-top-2">
-        <BwipCode bcid="qrcode" :text="codeUrl" />
         <mdc-text typo="headline5" class="d-inline-block m-left-2">QR-Code scannen, um dem Spiel beizutreten.</mdc-text>
       </div>
     </mdc-layout-cell>
@@ -42,13 +44,16 @@ export default {
     room () {
       return this.$store.state.room
     },
+    roomId () {
+      return this.$store.state.roomId
+    },
     codeUrl () {
       if (typeof webpackHotUpdate === 'undefined') {
-        console.log(`${window.location.href}client/${this.$store.state.roomId}`)
+        console.log(`${window.location.href}client/${this.roomId}`)
       } else {
-        console.log(`http://localhost:8081/client/${this.$store.state.roomId}`)
+        console.log(`http://localhost:8081/client/${this.roomId}`)
       }
-      return `${window.location.href}client/${this.$store.state.roomId}`
+      return `${window.location.href}client/${this.roomId}`
     }
   }
 }
@@ -59,12 +64,16 @@ export default {
 
 .logo-column {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   align-items: center;
 }
 
 .logo {
   width: 67%;
+}
+.qrcode {
+  width: 50%;
+  margin-top: auto;
 }
 
 .players-list-item {
@@ -99,5 +108,17 @@ export default {
     margin: 0;
     text-align: center;
   }
+}
+
+.qrcode-entry {
+  margin-top: auto;
+  p {
+    margin: 0;
+  }
+}
+
+.roomid {
+  font-family: 'Roboto Mono', monospace;
+  font-size: .9rem;
 }
 </style>

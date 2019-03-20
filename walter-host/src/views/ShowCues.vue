@@ -1,7 +1,7 @@
 <template>
   <div class="content cues">
     <mdc-layout-grid class="grid-padding">
-      <!-- SCOREBOARD -->
+      <!-- CUES -->
       <mdc-layout-cell desktop=12>
         <div class="header">
           <mdc-display typo="headline1">Runde {{ game.currentRound + 1 }}</mdc-display>
@@ -17,8 +17,10 @@
 
       </mdc-layout-cell>
     </mdc-layout-grid>
-    <mdc-text typo="body1" tag="div" class="answer-count">{{ answerCount }} / {{ answersNeeded}}</mdc-text>
-    <mdc-linear-progress class="progress" :progress="answerCount / answersNeeded"></mdc-linear-progress>
+    <div class="progress">
+      <mdc-text typo="headline5" tag="div" class="answer-count">{{ answerCount }} / {{ answersNeeded}} Antworten</mdc-text>
+      <mdc-linear-progress class="progress" :progress="answerCount / answersNeeded"></mdc-linear-progress>
+    </div>
   </div>
 </template>
 
@@ -67,5 +69,6 @@ export default {
 .answer-count {
   text-align: right;
   padding-right: 2rem;
+  padding-bottom: 1.5rem;
 } 
 </style>

@@ -6,3 +6,7 @@ $mdc-theme-background: #fff;
 $mdc-typography-font-family: unquote("Noto Serif, sans-serif");
 
 @import 'vue-mdc-adapter/dist/styles';
+
+.mdc-typography--headline1 {
+    font-weight: 600;
+}

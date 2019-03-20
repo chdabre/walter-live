@@ -88,7 +88,7 @@ export default {
   created () {
     setInterval(() => {
       this.currentAnswer++
-      if (this.currentVotes.length === 0) this.currentAnswer++
+      // if (this.currentVotes.length === 0) this.currentAnswer++
 
       if (this.currentSentence && this.currentAnswer > this.currentSentence.answers.length - 1) {
         this.currentAnswer = 0

@@ -77,23 +77,38 @@ b {
 }
 
 #app {
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 }
 
 .content {
+  display: flex;
   height: 100%;
 }
 
 .mdc-layout-grid {
   margin: 0;
   padding: 0;
+  height: 100%;
+
+  &__inner {
+    height: 100%;
+  }
+
+  &__cell{
+    display: flex;
+    flex-direction: column;
+  }
 }
+
 .grid-padding {
-  margin: 64px 64px;
+  padding: 16px 64px 128px 64px;
 }
 
 .logo {
   width: 100%;
+  margin-top: 4rem;
 }
 
 .component-slide-enter-active, .component-slide-leave-active {
@@ -112,6 +127,7 @@ b {
 }
 
 .progress {
+  width: 100%;
   position: absolute;
   bottom: 0;
 }

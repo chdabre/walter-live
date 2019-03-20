@@ -1,6 +1,6 @@
 <template>
   <mdc-layout-grid class="content client-wrapper">
-    <mdc-layout-cell>
+    <mdc-layout-cell desktop=4>
       <mdc-text typo="headline5" tag="h2">Runde {{ game.currentRound + 1 }}</mdc-text>
       
       <template v-if="!done">
@@ -32,8 +32,7 @@
       <template v-else>
         <mdc-text typo="headline6" tag="h2">Danke für deine Antworten.</mdc-text>
       </template>
-    </mdc-layout-cell>
-    
+    </mdc-layout-cell>    
     <mdc-snackbar ref="snackbar"/>
   </mdc-layout-grid>
 </template>

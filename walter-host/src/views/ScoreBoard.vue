@@ -32,7 +32,7 @@ export default {
   data () {
     return {
       startDate: null,
-      showDuration: 5000,
+      showDuration: 5000000,
       timeElapsed: 0
     }
   },

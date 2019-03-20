@@ -43,7 +43,11 @@ export default {
       return this.$store.state.room
     },
     codeUrl () {
-      console.log(`${window.location.href}client/${this.$store.state.roomId}`)
+      if (typeof webpackHotUpdate === 'undefined') {
+        console.log(`${window.location.href}client/${this.$store.state.roomId}`)
+      } else {
+        console.log(`http://localhost:8081/client/${this.$store.state.roomId}`)
+      }
       return `${window.location.href}client/${this.$store.state.roomId}`
     }
   }

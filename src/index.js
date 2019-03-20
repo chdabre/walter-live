@@ -264,6 +264,42 @@ io.on('connection', socket => {
     io.to(roomId).emit('roomUpdate', { context: 'submitAnswers', room })
   })
 
+  socket.on('finishRound', (msg) => {
+    let roomId = msg.roomId
+    let room = rooms[roomId]
+    let currentRound = room.game.rounds[room.game.currentRound]
+    let sphinxId = room.game.currentRound
+    
+    currentRound.sentences.forEach(sentence => {
+      let sphinxPoints = 0
+
+      sentence.votes.forEach(vote => {
+        if (vote.vote === sphinxId) {
+          console.log(`[finishRound] Sphinx ${room.players[sphinxId].name} Points +1`)
+          console.log(`[finishRound] Player ${room.players[vote.vote].name} Points +1`)
+          sphinxPoints++
+          room.players[vote.vote].points++
+        }
+        else {
+          console.log(`[finishRound] Player ${room.players[vote.vote].name} Points +1`)
+          room.players[vote.vote].points++
+        }
+      })
+
+      if (sphinxPoints < room.players.length) {
+        console.log(`[finishRound] Sphinx ${room.players[sphinxId].name} gets ${sphinxPoints} Points.`)
+        room.players[sphinxId].points += sphinxPoints
+      } else {
+        console.log(`[finishRound] All Players voted for Sphinx ${room.players[vote.vote].name}. They get 0 Points.`)
+      }
+    })
+
+    room.game.hostView = 'ScoreBoard'
+    room.game.clientView = 'noContent'
+
+    io.to(roomId).emit('roomUpdate', { context: 'submitAnswers', room })
+  })
+
   socket.on('roomUpdate', (msg) => {
     let roomId = msg.roomId
     if (roomId) {

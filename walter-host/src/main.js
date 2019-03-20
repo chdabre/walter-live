@@ -8,7 +8,7 @@ Vue.use(VueMDCAdapter)
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: `http://${window.location.hostname}:3000`,
+  connection: `http://${window.location.hostname}`,
   vuex: {
       store,
       actionPrefix: 'SOCKET_',

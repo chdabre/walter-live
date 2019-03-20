@@ -3,11 +3,14 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+let roomId = window.location.pathname.split('/').slice(-1)[0]
+let playerId = sessionStorage.getItem(roomId)
+
 export default new Vuex.Store({
   state: {
-    roomId: window.location.pathname.split('/').slice(-1)[0],
+    roomId: roomId,
     clientId: null,
-    playerId: null,
+    playerId: playerId,
     room: null,
   },
   mutations: {
@@ -16,6 +19,7 @@ export default new Vuex.Store({
     },
     playerId (state, payload) {
       state.playerId = payload
+      sessionStorage.setItem(state.roomId, payload)
     },
     roomUpdate (state, payload) {
       state.room = payload

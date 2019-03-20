@@ -8,7 +8,7 @@
 
       <!-- SCOREBOARD -->
       <mdc-layout-cell desktop=6>
-        <mdc-display typo="headline2">Punkte</mdc-display>
+        <mdc-display typo="headline2"><i v-if="room.game.ended">Spielende -</i> Punkte</mdc-display>
 
         <div class="players-list">
           <div class="players-list-item" v-for="(player, id) in playersSorted" :key="'player-' + id">
@@ -53,19 +53,22 @@ export default {
   },
   mounted () {
     this.startDate = new Date()
-    setTimeout(() => {
-      this.$socket.emit('nextCard', { roomId: this.$store.state.roomId })
-    }, this.showDuration)
 
-    let tInterval = setInterval(tInterval => {
-      let millisElapsed = ((new Date()).getTime() - this.startDate.getTime())
-      if (millisElapsed > this.showDuration) {
-        this.timeElapsed = 1
-        clearInterval(tInterval)
-      } else {
-        this.timeElapsed = millisElapsed / this.showDuration 
-      }
-    }, 1000)
+    if (!this.room.game.ended) {
+      setTimeout(() => {
+        this.$socket.emit('nextCard', { roomId: this.$store.state.roomId })
+      }, this.showDuration)
+
+      let tInterval = setInterval(tInterval => {
+        let millisElapsed = ((new Date()).getTime() - this.startDate.getTime())
+        if (millisElapsed > this.showDuration) {
+          this.timeElapsed = 1
+          clearInterval(tInterval)
+        } else {
+          this.timeElapsed = millisElapsed / this.showDuration 
+        }
+      }, 1000)
+    }
   }
 }
 </script>

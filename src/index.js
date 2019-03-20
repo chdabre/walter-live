@@ -175,7 +175,9 @@ io.on('connection', socket => {
     
     room.game.currentRound++
     if (room.game.currentRound > room.players.length - 1) {
-      // Show final scores
+      room.game.ended = true
+      room.game.hostView = 'ScoreBoard'
+      room.game.clientView = 'noContent'
     }
 
     room.game.rounds.push(createRound())
@@ -329,6 +331,7 @@ function createRoom () {
       hostView: 'Home',
       playersReady: false,
       currentRound: -1,
+      ended: false,
       rounds: []
     }
   }

@@ -10,7 +10,7 @@
 
     "start": "node src/index.js",
     "dev": "concurrently \"npm run start\" \"npm run host\" \"npm run client\"",
-    "build": "cd walter-client && yarn && yarn build && cd ../walter-host && yarn && yarn build"
+    "build-local": "cd walter-client && yarn && yarn build && cd ../walter-host && yarn && yarn build"
   },
   "dependencies": {
     "concurrently": "^4.1.0",

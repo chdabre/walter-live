@@ -1,0 +1,8 @@
+/* theme.scss */
+$mdc-theme-primary: #D63124;
+$mdc-theme-accent: #D63124;
+$mdc-theme-background: #fff;
+
+$mdc-typography-font-family: unquote("Noto Serif, sans-serif");
+
+@import 'vue-mdc-adapter/dist/styles';

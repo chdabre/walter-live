@@ -1,0 +1,16 @@
+$spacer: .5rem;
+
+$marginDirection:('right','left','top','bottom');
+$marginLength:(1,2,3,4,5);
+
+@each $dir in $marginDirection{
+  @each $len in $marginLength{
+    .m-#{$dir}-#{$len}{
+      margin-#{$dir}: #{$len * $spacer};
+    }
+  }
+}
+
+.d-inline-block {
+  display: inline-block;
+}

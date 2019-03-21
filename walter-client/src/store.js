@@ -11,7 +11,7 @@ export default new Vuex.Store({
     roomId: roomId,
     clientId: null,
     playerId: playerId,
-    room: null,
+    room: null
   },
   mutations: {
     clientId (state, payload) {

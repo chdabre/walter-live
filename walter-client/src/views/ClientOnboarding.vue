@@ -5,12 +5,12 @@
       <img class="logo" src="../assets/logo.png" />
 
       <template v-if="!game.playersReady">
-        <mdc-title type="headline6">Hallo! Trag bitte deinen Namen ein.</mdc-title>  
+        <mdc-title type="headline6">Hallo! Trag bitte deinen Namen ein.</mdc-title>
         <mdc-textfield @keydown.enter="submitName" v-model="userForm.name" label="Name" helptext-persistent helptext-validation :valid="!error" :helptext="errorText" box/>
         <mdc-button raised class="mt-2" @click="submitName">Beitreten</mdc-button>
       </template>
       <template v-else>
-        <mdc-title type="headline6">Das Spiel hat bereits gestartet! Warte auf die nächste Runde.</mdc-title>  
+        <mdc-title type="headline6">Das Spiel hat bereits gestartet! Warte auf die nächste Runde.</mdc-title>
       </template>
     </mdc-layout-cell>
   </mdc-layout-grid>
@@ -21,10 +21,10 @@ export default {
   data () {
     return {
       userForm: {
-        name: ""
+        name: ''
       },
       error: false,
-      errorText: ""
+      errorText: ''
     }
   },
   computed: {
@@ -55,7 +55,7 @@ export default {
       this.$store.commit('playerId', msg.playerId)
     },
     err (msg) {
-      this.error = true,
+      this.error = true
       this.errorText = msg.errorText
     }
   }

@@ -55,9 +55,9 @@ export default {
 
       this.submitted = true
     },
-    setHandicapChoice(index, value) {
+    setHandicapChoice (index, value) {
       this.handicapChoices[index] = value
-      this.handicapPoints = this.handicapChoices.reduce((a,b) => a + b, 0)
+      this.handicapPoints = this.handicapChoices.reduce((a, b) => a + b, 0)
     }
   }
 }
@@ -81,4 +81,3 @@ export default {
   font-size: 1.5rem;
 }
 </style>
-

@@ -16,7 +16,7 @@
 import VueMarkdown from 'vue-markdown'
 
 export default {
-  components: {
+  components: {
     VueMarkdown
   },
   props: {
@@ -58,7 +58,7 @@ export default {
 .cue-text {
   margin-top: 0;
   line-height: 1.5em;
-  
+
   & /deep/ p {
     margin: 0;
   }
@@ -69,7 +69,7 @@ export default {
     font-style: normal;
     font-weight: 600;
     padding: 0 .3em;
-    margin: 0 .1em; 
+    margin: 0 .1em;
   }
 }
 </style>

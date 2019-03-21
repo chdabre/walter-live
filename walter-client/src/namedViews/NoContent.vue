@@ -6,7 +6,7 @@
 
       <mdc-title v-if="!gameEnded" type="headline6" class="look">Schau nach vorne!</mdc-title>
       <mdc-title v-else type="headline6" class="look">Spielende!</mdc-title>
-      
+
       <mdc-button v-if="gameEnded && isGameLeader" raised class="m-top-5" @click="newGame">Neues Spiel Starten</mdc-button>
     </mdc-layout-cell>
   </mdc-layout-grid>

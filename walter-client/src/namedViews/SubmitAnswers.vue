@@ -2,9 +2,9 @@
   <mdc-layout-grid class="content client-wrapper">
     <mdc-layout-cell desktop=6 tablet=12 phone=4>
       <mdc-text typo="headline5" tag="h2">Runde {{ game.currentRound + 1 }}</mdc-text>
-      
+
       <template v-if="!done">
-        <mdc-text v-if="!sphinx" typo="headline5" tag="h2"><b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-text>
+        <mdc-text v-if="!sphinx" typo="headline5" tag="h2"><b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-text>
         <mdc-text v-else typo="headline5" tag="h2"><b>Du bist ist die Sphinx.</b></mdc-text>
 
         <Cue
@@ -20,7 +20,7 @@
             v-model="answers[currentAnswerStep][index]"
             label="WALTER"
             minlength=1
-            maxlength=50          
+            maxlength=50
             box/>
         </div>
 
@@ -32,7 +32,7 @@
       <template v-else>
         <mdc-text typo="headline6" tag="h2">Danke für deine Antworten.</mdc-text>
       </template>
-    </mdc-layout-cell>    
+    </mdc-layout-cell>
     <mdc-snackbar ref="snackbar"/>
   </mdc-layout-grid>
 </template>
@@ -96,7 +96,7 @@ export default {
         this.$root.$emit('show-snackbar', {
           message: 'You need to fill an answer for all fields',
           actionText: 'OK',
-          actionHandler() {},
+          actionHandler () {}
         })
       }
     }
@@ -104,7 +104,7 @@ export default {
 }
 
 function getAnswerPromptCount (template) {
-  return (template.match(/\_/g)||[]).length / 2
+  return (template.match(/_/g) || []).length / 2
 }
 
 function answerStepValid (answers) {

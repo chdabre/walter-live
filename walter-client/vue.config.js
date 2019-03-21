@@ -5,17 +5,17 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        includePaths: [path.resolve(__dirname,'node_modules')],
-      },
-    },
+        includePaths: [path.resolve(__dirname, 'node_modules')]
+      }
+    }
   },
   chainWebpack: config => {
     if (process.env.NODE_ENV === 'development') {
       config
         .output
-        .filename('[name].[hash].js') 
-        .end() 
-    }  
+        .filename('[name].[hash].js')
+        .end()
+    }
   },
   publicPath: '/client/',
   devServer: {

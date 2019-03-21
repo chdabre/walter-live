@@ -4,14 +4,14 @@
       <!-- LOGO -->
       <img class="logo" src="../assets/logo.png" />
 
-      <mdc-title type="headline6">Freut mich, {{ player.name }}!</mdc-title>  
+      <mdc-title type="headline6">Freut mich, {{ player.name }}!</mdc-title>
 
       <template v-if="player.isGameLeader">
         <mdc-title type="headline6">Sind alle Spieler bereit?</mdc-title>
         <mdc-button raised class="mt-2" @click="startGame">Ja, los!</mdc-button>
       </template>
       <template v-else>
-        <mdc-title type="headline6">Bitte warte auf die anderen Spieler.</mdc-title> 
+        <mdc-title type="headline6">Bitte warte auf die anderen Spieler.</mdc-title>
       </template>
     </mdc-layout-cell>
 
@@ -25,13 +25,13 @@ export default {
     player () {
       let room = this.$store.state.room
       let playerId = this.$store.state.playerId
-      
+
       return room.players[playerId]
     }
   },
   methods: {
     startGame () {
-      this.$socket.emit('startGame', { roomId: this.$store.state.roomId})
+      this.$socket.emit('startGame', { roomId: this.$store.state.roomId })
     }
   },
   sockets: {
@@ -39,7 +39,7 @@ export default {
       this.$root.$emit('show-snackbar', {
         message: msg.errorText,
         actionText: 'close',
-        actionHandler() {},
+        actionHandler () {}
       })
     }
   }

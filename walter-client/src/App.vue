@@ -1,5 +1,5 @@
 <template>
-  <div id="app">  
+  <div id="app">
     <template v-if="clientId !== null">
       <template v-if="playerId === null">
         <ClientOnboarding />
@@ -14,13 +14,13 @@
           <img class="logo" src="./assets/logo.png" />
 
           <mdc-headline v-if="error" class="m-top-5">{{ error }}</mdc-headline>
-          <div v-else> 
+          <div v-else>
             <mdc-linear-progress class="m-top-5" indeterminate></mdc-linear-progress>
           </div>
         </mdc-layout-cell>
       </mdc-layout-grid>
     </template>
-  </div> 
+  </div>
 </template>
 
 <script>
@@ -94,6 +94,6 @@ export default {
   font-style: normal;
   font-weight: 600;
   padding: 0 .3em;
-  margin: 0 .1em; 
+  margin: 0 .1em;
 }
 </style>

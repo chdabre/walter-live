@@ -9,30 +9,32 @@
         
         <transition v-if="currentSentence" class="cue" tag="div" appear name="component-slide" mode="out-in">
           <div :key="'page-' + currentResult">
-            <Cue class="cue"
-              :key="'cue-' + currentResult"
-              :number="currentResult + 1" 
-              :template="currentSentence.template"
-            />
+            <transition appear name="fade" mode="out-in">
+              <div :key="currentAnswer">
+                <Cue class="cue"
+                  :key="'cue-' + currentResult"
+                  :number="currentResult + 1" 
+                  :template="currentSentence.template"
+                  :answer="currentSentence.answers[currentAnswer]"
+                />
+                <mdc-layout-grid class="votes-wrapper">
+                  <mdc-layout-cell desktop=1></mdc-layout-cell>
+                  <mdc-layout-cell desktop=10>
+                        <div class="vote-set">
+                          <mdc-text class="m-left-2 player" typo="headline3" tag="span"><i :class="currentAnswer === game.currentRound ? 'mdc-theme--primary':''">{{ players[currentAnswer].name }}</i>, {{ new Date().getFullYear() }}</mdc-text>
 
-            <transition appear name="component-slide" mode="out-in">
-              <mdc-layout-grid class="votes-wrapper" :key="currentAnswer">
-                <mdc-layout-cell desktop=1></mdc-layout-cell>
-                <mdc-layout-cell desktop=10>
-                      <div class="vote-set">
-                        <div class="answer-set">
-                          <div class="answer"><mdc-text typo="headline3" tag="span">{{ currentSentence.answers[currentAnswer] | formatAnswer }}</mdc-text></div>
-                          <mdc-text class="m-left-2 player" typo="headline3" tag="span">- <i :class="currentAnswer === game.currentRound ? 'mdc-theme--primary':''">{{ players[currentAnswer].name }}</i>, {{ new Date().getFullYear() }}</mdc-text>
+                          <div class="votes">
+                            <mdc-chip-set>
+                              <mdc-chip v-for="vote in currentVotes"
+                                :key="vote.playerId"
+                                leadingIcon="face">{{ players[vote.playerId].name }}</mdc-chip>
+                            </mdc-chip-set>
+                            <!-- <mdc-text v-if="!currentVotes.length" class="m-left-2 player" typo="headline3" tag="span">Keine Stimmen</mdc-text> -->
+                          </div>
                         </div>
-
-                        <div class="votes">
-                          <mdc-chip-set>
-                            <mdc-chip v-for="vote in currentVotes" :key="vote.playerId">{{ players[vote.playerId].name }}</mdc-chip>
-                          </mdc-chip-set>
-                        </div>
-                      </div>
-                </mdc-layout-cell>
-              </mdc-layout-grid>
+                  </mdc-layout-cell>
+                </mdc-layout-grid>
+              </div>
             </transition>
           </div>
         </transition>
@@ -43,9 +45,6 @@
 
 <script>
 import Cue from '../components/Cue.vue'
-import { setInterval } from 'timers';
-
-// <mdc-chip v-for="(vote, index) in currentSentence.votes" :key="'v-' + index">{{ currentSentence.answers[vote.vote] | formatAnswer }} - {{ players[vote.playerId].name }}</mdc-chip>
 
 export default {
   data () {
@@ -144,9 +143,15 @@ export default {
 
 .vote-set {
   .votes {
-    margin-top: 2rem;
+    margin-top: 8rem;
     
     .mdc-chip {
+      & /deep/ i {
+        font-size: 3rem!important;
+        width: 4rem;
+        height: 3rem;
+      }
+
       font-size: 3rem;
       padding: 2rem;
     }
@@ -157,4 +162,11 @@ export default {
   text-align: right;
   padding-right: 2rem;
 } 
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

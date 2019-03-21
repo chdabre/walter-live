@@ -7,7 +7,9 @@
     </mdc-layout-cell>
 
     <mdc-layout-cell desktop=10>
-      <mdc-display typo="headline3" class="cue-text"><vue-markdown>{{ template }}</vue-markdown></mdc-display>
+      <mdc-display typo="headline3" class="cue-text" :class="bigger ? 'bigger':''">
+        <vue-markdown>{{ template | insertAnswer(answer) }}</vue-markdown>
+      </mdc-display>
     </mdc-layout-cell>
   </mdc-layout-grid>
 </template>
@@ -27,6 +29,28 @@ export default {
     template: {
       type: String,
       required: true
+    },
+    answer: {
+      type: Array,
+      required: false
+    },
+    bigger: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
+  },
+  filters: {
+    insertAnswer (template, answer) {
+      if (answer) {
+        answer.forEach(answer => {
+          template = template.replace(/_[A-Za-z]*_/, `~${answer}~`)
+        })
+        template = template.replace(/~/g,'_')
+        return template
+      } else {
+        return template
+      }
     }
   }
 }
@@ -34,6 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .number-circle {
+  margin-top: 1rem;
   width: 3rem;
   height: 3rem;
 
@@ -56,6 +81,10 @@ export default {
   line-height: 1.5em;
   font-size: 2.25rem;
   
+  &.bigger {
+    font-size: 3rem;
+  }
+
   & /deep/ p {
     margin: 0;
   }

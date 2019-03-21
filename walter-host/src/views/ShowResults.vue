@@ -6,14 +6,14 @@
         <div class="header">
           <mdc-display typo="headline2"><b>Runde {{ game.currentRound + 1 }} - Resultate</b></mdc-display>
         </div>
-        
+
         <transition v-if="currentSentence" class="cue" tag="div" appear name="component-slide" mode="out-in">
           <div :key="'page-' + currentResult">
             <transition appear name="fade" mode="out-in">
               <div :key="currentAnswer">
                 <Cue class="cue"
                   :key="'cue-' + currentResult"
-                  :number="currentResult + 1" 
+                  :number="currentResult + 1"
                   :template="currentSentence.template"
                   :answer="currentSentence.answers[currentAnswer]"
                 />
@@ -49,8 +49,8 @@ import Cue from '../components/Cue.vue'
 export default {
   data () {
     return {
-        currentResult: 0,
-        currentAnswer: 0
+      currentResult: 0,
+      currentAnswer: 0
     }
   },
   components: {
@@ -80,7 +80,7 @@ export default {
   },
   filters: {
     formatAnswer (value, currentSentence) {
-      if (value )return value.join(', ')
+      if (value) return value.join(', ')
       return ''
     }
   },
@@ -115,7 +115,7 @@ export default {
   align-items: flex-end;
 
   h1 {
-    margin: 4rem 0; 
+    margin: 4rem 0;
   }
 }
 
@@ -127,7 +127,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  
+
   .player {
     font-style: italic;
     font-weight: bold;
@@ -144,7 +144,7 @@ export default {
 .vote-set {
   .votes {
     margin-top: 8rem;
-    
+
     .mdc-chip {
       & /deep/ i {
         font-size: 3rem!important;
@@ -161,7 +161,7 @@ export default {
 .answer-count {
   text-align: right;
   padding-right: 2rem;
-} 
+}
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;

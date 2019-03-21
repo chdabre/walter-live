@@ -13,7 +13,7 @@
         <div class="players-list">
           <div class="players-list-item" v-for="(player, id) in playersSorted" :key="'player-' + id">
             <div class="number-circle">
-              <mdc-display>{{ id + 1 }}</mdc-display>
+              <mdc-display>{{ id + 1 }}</mdc-display>
             </div>
 
             <mdc-display>{{ player.name }}</mdc-display>
@@ -42,7 +42,7 @@ export default {
       return this.$store.state.room
     },
     playersSorted () {
-      let sortedPlayers = this.room.players.sort((a,b) => {
+      let sortedPlayers = Object.assign({}, this.room.players).sort((a, b) => {
         let playerPointsA = a.points + a.handicap
         let playerPointsB = b.points + b.handicap
 
@@ -66,7 +66,7 @@ export default {
           this.timeElapsed = 1
           clearInterval(this.tInterval)
         } else {
-          this.timeElapsed = millisElapsed / this.showDuration 
+          this.timeElapsed = millisElapsed / this.showDuration
         }
       }, 1000)
     }

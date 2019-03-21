@@ -5,14 +5,14 @@
       <mdc-layout-cell desktop=12>
         <div class="header">
           <mdc-display typo="headline2"><b>Runde {{ game.currentRound + 1 }}</b></mdc-display>
-          <mdc-display typo="headline2"><b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-display>
+          <mdc-display typo="headline2"><b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-display>
         </div>
-        
+
         <transition class="cue" tag="div" appear name="component-slide" mode="out-in">
           <div :key="'page-' + currentCue">
             <Cue class="cue"
               :key="'cue-' + currentCue"
-              :number="currentCue + 1" 
+              :number="currentCue + 1"
               :template="currentSentence.template"
             />
 
@@ -72,7 +72,7 @@ export default {
       return value.join(', ')
     }
   }
-    
+
 }
 </script>
 
@@ -89,7 +89,7 @@ export default {
   align-items: flex-end;
 
   h1 {
-    margin: 4rem 0; 
+    margin: 4rem 0;
   }
 }
 
@@ -108,5 +108,5 @@ export default {
 .answer-count {
   text-align: right;
   padding-right: 2rem;
-} 
+}
 </style>

@@ -9,7 +9,7 @@
       <!-- SCOREBOARD -->
       <mdc-layout-cell desktop=6 v-if="game.currentRound >= 0">
         <mdc-display typo="headline1">Runde {{ game.currentRound + 1 }}</mdc-display>
-        <mdc-display typo="headline2"><b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-display>
+        <mdc-display typo="headline2"><b>{{ players[game.currentRound].name }}</b> ist die Sphinx.</mdc-display>
       </mdc-layout-cell>
     </mdc-layout-grid>
     <mdc-linear-progress class="progress" :progress="timeElapsed"></mdc-linear-progress>
@@ -41,13 +41,14 @@ export default {
       this.$socket.emit('showCues', { roomId: this.$store.state.roomId })
     }, this.showDuration)
 
+    // eslint-disable-next-line
     let tInterval = setInterval(tInterval => {
       let millisElapsed = ((new Date()).getTime() - this.startDate.getTime())
       if (millisElapsed > this.showDuration) {
         this.timeElapsed = 1
         clearInterval(tInterval)
       } else {
-        this.timeElapsed = millisElapsed / this.showDuration 
+        this.timeElapsed = millisElapsed / this.showDuration
       }
     }, 1000)
   }

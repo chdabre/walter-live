@@ -18,7 +18,7 @@
 import VueMarkdown from 'vue-markdown'
 
 export default {
-  components: {
+  components: {
     VueMarkdown
   },
   props: {
@@ -46,7 +46,7 @@ export default {
         answer.forEach(answer => {
           template = template.replace(/_[A-Za-z]*_/, `~${answer}~`)
         })
-        template = template.replace(/~/g,'_')
+        template = template.replace(/~/g, '_')
         return template
       } else {
         return template
@@ -80,7 +80,7 @@ export default {
   margin-top: 0;
   line-height: 1.5em;
   font-size: 2.25rem;
-  
+
   &.bigger {
     font-size: 3rem;
   }
@@ -95,7 +95,7 @@ export default {
     font-style: normal;
     font-weight: 600;
     padding: 0 .3em;
-    margin: 0 .1em; 
+    margin: 0 .1em;
   }
 }
 </style>

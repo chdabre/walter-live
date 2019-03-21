@@ -15,9 +15,9 @@
       <div class="players-list">
         <div class="players-list-item" v-for="(player, id) in room.players" :key="'player-' + id">
           <div class="number-circle">
-            <mdc-display>{{ id + 1 }}</mdc-display>
+            <mdc-display>{{ id + 1 }}</mdc-display>
           </div>
-          
+
           <mdc-display>{{ player.name }}</mdc-display>
         </div>
         <div v-for="i in 8 - room.players.length" :key="'placeholder-' + i" class="players-list-item players-list-item--placeholder">
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import BwipCode from "@/components/BwipCode"
+import BwipCode from '@/components/BwipCode'
 
 export default {
   components: {
@@ -64,7 +64,7 @@ export default {
 
 .logo-column {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
 }
 

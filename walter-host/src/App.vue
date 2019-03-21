@@ -8,7 +8,7 @@
       </template>
     </template>
     <template v-else>
-      <div v-if="!error"> 
+      <div v-if="!error">
         <mdc-linear-progress class="m-top-5" indeterminate></mdc-linear-progress>
       </div>
       <mdc-layout-grid class="nocontent grid-padding">
@@ -67,6 +67,7 @@ export default {
 </script>
 
 <style lang="scss">
+// eslint-disable-next-line
 @import './styles/theme';
 
 body {
@@ -90,7 +91,7 @@ b {
 .mdc-layout-grid {
   margin: 0;
   padding: 0;
-  
+
   &--100 {
     height: 100%;
   }

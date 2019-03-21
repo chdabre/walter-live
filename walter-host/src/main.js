@@ -8,14 +8,13 @@ Vue.use(VueMDCAdapter)
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: typeof webpackHotUpdate !== 'undefined' ? `http://localhost:3000`:`http://${window.location.hostname}`,
+  connection: typeof webpackHotUpdate !== 'undefined' ? `http://localhost:3000` : `http://${window.location.hostname}`,
   vuex: {
-      store,
-      actionPrefix: 'SOCKET_',
-      mutationPrefix: 'SOCKET_'
+    store,
+    actionPrefix: 'SOCKET_',
+    mutationPrefix: 'SOCKET_'
   }
 }))
-
 
 Vue.config.productionTip = false
 

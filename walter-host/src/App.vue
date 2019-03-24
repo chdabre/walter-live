@@ -5,6 +5,8 @@
         <transition name="component-slide" mode="out-in">
           <Component :is="room.game.hostView"/>
         </transition>
+        <audio ref="bgAudio" src="/audio/bg-music.mp3" autoplay loop/>
+        <audio ref="stingAudio"/>
       </template>
     </template>
     <template v-else>
@@ -16,20 +18,21 @@
           <img class="logo" src="./assets/logo.png" />
           <mdc-headline v-if="error" class="m-top-5">{{ error }}</mdc-headline>
         </mdc-layout-cell>
-        <mdc-layout-cell tablet=10>
-        </mdc-layout-cell>
       </mdc-layout-grid>
     </template>
   </div>
 </template>
 
 <script>
+import { EventBus } from '@/event-bus'
+
 import Home from './views/Home.vue'
 
 export default {
   data () {
     return {
-      error: false
+      error: false,
+      stingSource: ''
     }
   },
   components: {
@@ -61,6 +64,19 @@ export default {
     roomId (msg) {
       console.log(`[${msg.context}] Room ID Received`)
       this.$store.commit('roomId', msg.roomId)
+    }
+  },
+  created () {
+    EventBus.$on('play-sting', this.playSting)
+  },
+  methods: {
+    playSting (name) {
+      this.$refs.bgAudio.muted = true
+      this.$refs.stingAudio.src = `/audio/${name}.mp3`
+      this.$refs.stingAudio.play()
+      this.$refs.stingAudio.addEventListener('ended', () => {
+        this.$refs.bgAudio.muted = false
+      })
     }
   }
 }
@@ -115,6 +131,12 @@ b {
   margin-top: 4rem;
 }
 
+.progress {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
 .component-slide-enter-active, .component-slide-leave-active {
   transition: transform .5s ease;
 }
@@ -130,9 +152,10 @@ b {
   transform: translateX(-100vw)
 }
 
-.progress {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

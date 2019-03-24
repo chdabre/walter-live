@@ -3,8 +3,9 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-let roomId = window.location.pathname.split('/').slice(-1)[0]
-let playerId = sessionStorage.getItem(roomId)
+let roomId = window.location.pathname.split('/').slice(-1)[0].toUpperCase()
+let playerId = parseInt(window.sessionStorage.getItem(roomId))
+if (isNaN(playerId)) playerId = null
 
 export default new Vuex.Store({
   state: {
@@ -19,7 +20,7 @@ export default new Vuex.Store({
     },
     playerId (state, payload) {
       state.playerId = payload
-      sessionStorage.setItem(state.roomId, payload)
+      window.sessionStorage.setItem(state.roomId, payload)
     },
     roomUpdate (state, payload) {
       state.room = payload

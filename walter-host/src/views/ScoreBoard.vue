@@ -42,7 +42,8 @@ export default {
       return this.$store.state.room
     },
     playersSorted () {
-      let sortedPlayers = Object.assign({}, this.room.players).sort((a, b) => {
+      let playersCopy = JSON.parse(JSON.stringify(this.room.players))
+      let sortedPlayers = playersCopy.sort((a, b) => {
         let playerPointsA = a.points + a.handicap
         let playerPointsB = b.points + b.handicap
 

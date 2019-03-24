@@ -9,46 +9,43 @@ var io = require('socket.io')(http)
 const PORT = process.env.PORT || 3000
 
 const MAX_PLAYER_COUNT = 8
-const emptyGame = {
-  clientView: 'WaitForPlayers',
-  hostView: 'Home',
-  playersReady: false,
-  currentRound: -1,
-  ended: false,
-  rounds: []
-}
 
 let clients = []
 let rooms = {}
 
-// Static file declaration
-app.use(express.static(path.join(__dirname, '../walter-host/dist')))
+/* EXPRESS CONFIGURATION */
 
-// production mode
 if (process.env.NODE_ENV === 'production') {
+  // Production mode
+  // Static Files
   app.use(express.static(path.join(__dirname, '../walter-host/dist')))
   app.use('/client', express.static(path.join(__dirname, '../walter-client/dist')))
 
+  // Routes for Index views
   app.get('/client/*', (req, res) => {
     res.sendfile(path.join(__dirname, '../walter-client/dist/index.html'))
   })
   app.get('/', (req, res) => {
     res.sendfile(path.join(__dirname, '../walter-host/dist/index.html'))
   })
+} else {
+  // Development mode
+  app.get('/client/*', (req, res) => {
+    res.sendfile(path.join(__dirname, '../walter-client/public/index.html'))
+  })
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../walter-host/public/index.html'))
+  })
 }
 
-// build mode
-app.get('/client/*', (req, res) => {
-  res.sendfile(path.join(__dirname, '../walter-client/public/index.html'))
-})
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../walter-host/public/index.html'))
-})
-
 http.listen(PORT, () => {
+  console.log('WALTER LIVE BACKEND')
+  console.log(`Ready with ${cards.length} cards.\n`)
+
   console.log('listening on *' + PORT)
 })
 
+/* SOCKET.IO HANDLER */
 io.on('connection', socket => {
   console.log('[connect] Socket Connected!')
 
@@ -90,15 +87,16 @@ io.on('connection', socket => {
         let clientId = clients.indexOf(newClient)
         socket.join(`${roomId}`)
         socket.emit('clientId', { clientId })
-        console.log(`[init] ${role} joined room with Id ${roomId}`)
 
         io.to(roomId).emit('roomUpdate', { context: 'init', room: rooms[roomId] })
+        console.log(`[init] ${role} joined room with Id ${roomId}`)
       }
     } catch (e) {
       socket.emit('err', {
         errorType: e.name,
         errorText: `Error in [init]: ${e.toString()}`
       })
+      console.error(`Error in [init]: ${e.toString()}`)
     }
   })
 
@@ -145,6 +143,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [createPlayer]: ${e.toString()}`
       })
+      console.error(`Error in [createPlayer]: ${e.toString()}`)
     }
   })
 
@@ -169,6 +168,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [startGame]: ${e.toString()}`
       })
+      console.error(`Error in [startGame]: ${e.toString()}`)
     }
   })
 
@@ -196,6 +196,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [submitHandicap]: ${e.toString()}`
       })
+      console.error(`Error in [submitHandicap]: ${e.toString()}`)
     }
   })
 
@@ -220,6 +221,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [nextCard]: ${e.toString()}`
       })
+      console.error(`Error in [nextCard]: ${e.toString()}`)
     }
   })
 
@@ -237,6 +239,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [showCues]: ${e.toString()}`
       })
+      console.error(`Error in [showCues]: ${e.toString()}`)
     }
   })
 
@@ -289,6 +292,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [submitAnswers]: ${e.toString()}`
       })
+      console.error(`Error in [submitAnswers]: ${e.toString()}`)
     }
   })
 
@@ -321,6 +325,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [submitVote]: ${e.toString()}`
       })
+      console.error(`Error in [submitVote]: ${e.toString()}`)
     }
   })
 
@@ -362,6 +367,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [finishRound]: ${e.toString()}`
       })
+      console.error(`Error in [finishRound]: ${e.toString()}`)
     }
   })
 
@@ -383,8 +389,9 @@ io.on('connection', socket => {
     } catch (e) {
       socket.emit('err', {
         errorType: e.name,
-        errorText: `Error in [showCues]: ${e.toString()}`
+        errorText: `Error in [newGame]: ${e.toString()}`
       })
+      console.error(`Error in [newGame]: ${e.toString()}`)
     }
   })
 
@@ -399,6 +406,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [roomUpdate]: ${e.toString()}`
       })
+      console.error(`Error in [roomUpdate]: ${e.toString()}`)
     }
   })
 
@@ -418,6 +426,7 @@ io.on('connection', socket => {
         errorType: e.name,
         errorText: `Error in [disconnect]: ${e.toString()}`
       })
+      console.error(`Error in [disconnect]: ${e.toString()}`)
     }
   })
 })
@@ -426,7 +435,14 @@ function createRoom () {
   let roomId = makeid(4)
   let room = {
     players: [],
-    game: Object.assign({}, emptyGame)
+    game: {
+      clientView: 'WaitForPlayers',
+      hostView: 'Home',
+      playersReady: false,
+      currentRound: -1,
+      ended: false,
+      rounds: []
+    }
   }
 
   rooms[roomId] = room
@@ -453,15 +469,13 @@ function createRound () {
     })
   })
 
-  let round = {
+  return {
     sentences,
     answerCount: 0,
     voteCount: 0,
     currentVoteStep: 0,
     shuffledAnswers: []
   }
-
-  return Object.assign({}, round)
 }
 
 /**
@@ -475,6 +489,10 @@ function shuffle (array) {
   }
 }
 
+/**
+ * Returns an UID of Uppercase characters of a given length.
+ * @param {Number} length length of the UID.
+ */
 function makeid (length) {
   var text = ''
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

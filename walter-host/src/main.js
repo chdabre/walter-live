@@ -22,3 +22,7 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+window.onbeforeunload = s => {
+  return 'Do you really want to leave?. This Game will be deleted if you leave the page.'
+}

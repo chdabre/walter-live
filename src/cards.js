@@ -106,7 +106,7 @@ const cards = [
   ],
   [
     'Über _WALTER_ haben mir meine Eltern nie die Wahrheit erzählt.',
-    'Meerschweinchen vermehren sich rasend. Die Jungen sind bereits nach _WALTER_ Monaten geschlechtsreif und werfen normalerweise wieder _WALTER_ Junge. Daher ver_WALTER_facht sich der Bestand innerhalb eines Jahres.',
+    'Meerschweinchen vermehren sich rasend. Die Jungen sind bereits nach _WALTER_ Monaten geschlechtsreif und werfen normalerweise wieder _WALTER_ Junge. Daher ver _WALTER_ facht sich der Bestand innerhalb eines Jahres.',
     'Wenn ich einen neuen Modetanz erfinde, taufe ich ihn _WALTER_.'
   ],
   [
@@ -190,7 +190,7 @@ const cards = [
     'Mit keinem Foto könnte ein Erpresser mehr Geld herausholen als mit jenem, das _WALTER_ beim _WALTERN_ zeigt.'
   ],
   [
-    'In Sachen Partnerschaft bin ich ganz unvoreingenommen. Nur finde ich, der Mann sollte _WALTER_er sein als die Frau.',
+    'In Sachen Partnerschaft bin ich ganz unvoreingenommen. Nur finde ich, der Mann sollte _WALTER_ er sein als die Frau.',
     'Ein Tag _WALTER_ ist ein unvergessliches Erlebnis.',
     'Ich möchte mal an einer dieser Imitations-Shows am Fernsehen teilnehmen. Ich glaube, am überzeugendsten könnte ich den Gesang _WALTERS_ imitieren.'
   ],
@@ -407,7 +407,7 @@ const cards = [
   [
     'Ich habe eine Idee! Wir bilden alle zusammen eine neue Rockgruppe und nennen uns "_WALTER_"!',
     'Jeder kann irgendwas nicht ausstehen; aber niemand kann _WALTER_ nicht ausstehen.',
-    '"Höhenfeuer" war ein Film über Leben und Lieben auf dem Berg. Ein Film über mein Leben hiesse "_WALTER_feuer".'
+    '"Höhenfeuer" war ein Film über Leben und Lieben auf dem Berg. Ein Film über mein Leben hiesse "_WALTER_ feuer".'
   ],
 
   [

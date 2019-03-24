@@ -97,7 +97,7 @@ export default {
           this.$socket.emit('finishRound', { roomId: this.$store.state.roomId })
         }
       }
-    }, 5000)
+    }, 8000)
   }
 }
 </script>
@@ -161,12 +161,5 @@ export default {
 .answer-count {
   text-align: right;
   padding-right: 2rem;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
 }
 </style>

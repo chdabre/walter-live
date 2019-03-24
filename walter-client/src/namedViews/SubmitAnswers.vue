@@ -39,6 +39,7 @@
 
 <script>
 import Cue from '../components/Cue.vue'
+import { dirname } from 'path';
 
 export default {
   components: {
@@ -48,7 +49,8 @@ export default {
     return {
       currentAnswerStep: 0,
       answers: [],
-      done: false
+      done: false,
+      trimAnswers
     }
   },
   computed: {
@@ -89,7 +91,7 @@ export default {
           this.$socket.emit('submitAnswers', {
             roomId: this.$store.state.roomId,
             playerId: this.$store.state.playerId,
-            answers: this.answers
+            answers: trimAnswers(this.answers)
           })
         }
       } else {
@@ -117,6 +119,19 @@ function answerStepValid (answers) {
 
   return valid
 }
+
+function trimAnswers (answers) {
+  let trimmedAnswers = []
+  answers.forEach(answer => {
+    let trimmedAnswer = []
+    answer.forEach(str => trimmedAnswer.push(str.trim()))
+
+    trimmedAnswers.push(trimmedAnswer)
+  })
+
+  return trimmedAnswers
+}
+
 </script>
 
 <style lang="scss" scoped>

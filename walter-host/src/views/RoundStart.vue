@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { EventBus } from '@/event-bus'
+
 export default {
   data () {
     return {
@@ -36,6 +38,7 @@ export default {
   mounted () {
     if (this.game.currentRound === -1) this.$socket.emit('nextCard', { roomId: this.$store.state.roomId })
 
+    EventBus.$emit('play-sting', 'sting')
     this.startDate = new Date()
     setTimeout(() => {
       this.$socket.emit('showCues', { roomId: this.$store.state.roomId })

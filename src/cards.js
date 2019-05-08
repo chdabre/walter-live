@@ -131,7 +131,7 @@ const cards = [
   ],
   [
     'Aerobics- und Stretching-Übungen sind jeden Morgen im Frühstücksfemsehen zu bewundern. - Ich werde erst dann mitturnen, wenn _WALTER_ als Vorturnerin zeigen.',
-    '_WALTER ist ein typisches Frauen-Hobby.',
+    '_WALTER_ ist ein typisches Frauen-Hobby.',
     'Otto hat mein besonderes Talent erkannt und mich für seinen nächsten Film als _WALTER_ engagiert.'
   ],
   [

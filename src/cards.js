@@ -584,7 +584,7 @@ const cards = [
     'In überraschenden Situationen reagiere ich meist sehr _WALTER_.'
   ],
   [
-    'Wenn ich einen Gebrauchtwagen unbedingt verkaufen wollte, gelänge mir dies bestimmt mit der kleinen Lüge: "Oh, habe ich Ihnen schon gesagt, wer der frühere Besitzer war?"',
+    'Wenn ich einen Gebrauchtwagen unbedingt verkaufen wollte, gelänge mir dies bestimmt mit der kleinen Lüge: "Oh, habe ich Ihnen schon gesagt, wer der frühere Besitzer war? _WALTER_."',
     'Paraguay ist berühmt für seine _WALTER_ und _WALTER_.',
     'Im Zirkus interessiert mich nichts so sehr wie _WALTER_.'
   ],

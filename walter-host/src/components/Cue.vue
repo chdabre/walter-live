@@ -47,8 +47,8 @@ export default {
           template = template.replace(/_[A-Za-z]*_/, `~${answer}~`)
         })
         template = template.replace(/~/g, '_')
-      } 
-      
+      }
+
       return template
     }
   }

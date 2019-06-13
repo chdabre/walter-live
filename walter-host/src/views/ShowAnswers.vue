@@ -20,8 +20,8 @@
               <mdc-layout-cell desktop=1></mdc-layout-cell>
               <mdc-layout-cell desktop=10>
                 <transition-group class="answers" tag="div" appear name="component-slide">
-                  <div class="answer" v-for="(answer, index) in currentSentence.answers" :key="'answer-' + index">
-                      <mdc-text typo="headline3" tag="span">{{ answer | formatAnswer(currentSentence) }}</mdc-text>
+                  <div class="answer" v-for="(answer, index) in shuffledAnswers" :key="'answer-' + index">
+                      <mdc-text typo="headline3" tag="span">{{ answer.answer | formatAnswer(currentSentence) }}</mdc-text>
                   </div>
                 </transition-group>
               </mdc-layout-cell>
@@ -55,6 +55,9 @@ export default {
     },
     currentSentence () {
       return this.game.rounds[this.game.currentRound].sentences[this.currentCue]
+    },
+    shuffledAnswers () {
+      return this.game.rounds[this.game.currentRound].shuffledAnswers[this.currentCue]
     },
     answerCount () {
       let currentRound = this.game.rounds[this.game.currentRound]

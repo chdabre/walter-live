@@ -28,6 +28,7 @@
 </template>
 
 <script>
+/* global ga */
 export default {
   data () {
     return {
@@ -57,6 +58,15 @@ export default {
     this.startDate = new Date()
 
     if (!this.room.game.ended) {
+      if (this.room.game.currentRound === -1) {
+        console.log("Send startGame event")
+        gtag('event', 'start', {
+          event_category: 'Game',
+          event_label: 'Game started',
+          value: this.room.players.length
+        })
+      }
+
       setTimeout(() => {
         this.$socket.emit('nextCard', { roomId: this.$store.state.roomId })
       }, this.showDuration)
@@ -70,6 +80,12 @@ export default {
           this.timeElapsed = millisElapsed / this.showDuration
         }
       }, 1000)
+    } else {
+      console.log("Send gameFinished event")
+      gtag('send', 'end', {
+        event_category: 'Game',
+        event_label: 'Game finished'
+      })
     }
   }
 }

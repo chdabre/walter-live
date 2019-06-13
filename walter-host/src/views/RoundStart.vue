@@ -36,7 +36,9 @@ export default {
     }
   },
   mounted () {
-    if (this.game.currentRound === -1) this.$socket.emit('nextCard', { roomId: this.$store.state.roomId })
+    if (this.game.currentRound === -1) {
+      this.$socket.emit('nextCard', { roomId: this.$store.state.roomId })
+    }
 
     EventBus.$emit('play-sting', 'sting')
     this.startDate = new Date()

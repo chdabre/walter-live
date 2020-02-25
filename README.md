@@ -2,6 +2,8 @@
 
 ### A Web-based multiscreen game based on the swiss card game "DER WAHRE WALTER"
 
+[Live Demo](walter.imakethings.ch)
+
 ## Folder structure
 
 - `src/` - Backend code (socket.io)

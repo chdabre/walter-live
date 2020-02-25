@@ -39,8 +39,8 @@ export default {
   },
   computed: {
     players () {
-      let players = this.$store.state.room.players
-      let thisPlayer = players[this.$store.state.playerId]
+      const players = this.$store.state.room.players
+      const thisPlayer = players[this.$store.state.playerId]
 
       return players.filter(player => player !== thisPlayer) // Filter out current Player
     }

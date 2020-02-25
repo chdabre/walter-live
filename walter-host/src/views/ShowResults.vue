@@ -146,7 +146,7 @@ export default {
     margin-top: 8rem;
 
     .mdc-chip {
-      & /deep/ i {
+      & >>> i {
         font-size: 3rem!important;
         width: 4rem;
         height: 3rem;

@@ -54,7 +54,7 @@ export default {
   },
   sockets: {
     connect () {
-      console.log('[init] Sending init packet...')
+      // console.log('[init] Sending init packet...')
       this.$socket.emit('init', {
         roomId: this.$store.state.roomId,
         playerId: this.$store.state.roomId,
@@ -65,7 +65,7 @@ export default {
       this.$store.commit('clientId', msg.clientId)
     },
     roomUpdate (msg) {
-      console.log(`[${msg.context}] Room Update`)
+      // console.log(`[${msg.context}] Room Update`)
       this.$store.commit('roomUpdate', msg.room)
     },
     err (msg) {

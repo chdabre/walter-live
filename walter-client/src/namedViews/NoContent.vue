@@ -19,8 +19,8 @@ export default {
       return this.$store.state.room.game.ended
     },
     isGameLeader () {
-      let playerId = this.$store.state.playerId
-      let players = this.$store.state.room.players
+      const playerId = this.$store.state.playerId
+      const players = this.$store.state.room.players
 
       if (players[playerId]) {
         return players[playerId].isGameLeader

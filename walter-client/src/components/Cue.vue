@@ -59,11 +59,11 @@ export default {
   margin-top: 0;
   line-height: 1.5em;
 
-  & /deep/ p {
+  & >>> p {
     margin: 0;
   }
 
-  & /deep/ em {
+  & >>> em {
     background-color: black;
     color: white;
     font-style: normal;

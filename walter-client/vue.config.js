@@ -5,7 +5,17 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        includePaths: [path.resolve(__dirname, 'node_modules')]
+        webpackImporter: false,
+        sassOptions: {
+          includePaths: [path.resolve(__dirname, 'node_modules')]
+        }
+      }
+    }
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '~': path.resolve(__dirname, 'node_module_overrides/')
       }
     }
   },

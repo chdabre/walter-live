@@ -84,11 +84,11 @@ export default {
     font-size: 3rem;
   }
 
-  & /deep/ p {
+  & >>> p {
     margin: 0;
   }
 
-  & /deep/ em {
+  & >>> em {
     background-color: black;
     color: white;
     font-style: normal;

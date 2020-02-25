@@ -23,8 +23,8 @@
 export default {
   computed: {
     player () {
-      let room = this.$store.state.room
-      let playerId = this.$store.state.playerId
+      const room = this.$store.state.room
+      const playerId = this.$store.state.playerId
 
       return room.players[playerId]
     }

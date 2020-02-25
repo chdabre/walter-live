@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
-import VueMDCAdapter from 'vue-mdc-adapter'
+import VueMDCAdapter from '~/vue-mdc-adapter'
 import VueSocketIO from 'vue-socket.io'
 
 Vue.use(VueMDCAdapter)
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: typeof webpackHotUpdate !== 'undefined' ? `http://localhost:3000` : `http://${window.location.hostname}`,
+  connection: typeof webpackHotUpdate !== 'undefined' ? 'http://localhost:3000' : `http://${window.location.hostname}`,
   vuex: {
     store,
     actionPrefix: 'SOCKET_',

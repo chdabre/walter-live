@@ -39,7 +39,6 @@
 
 <script>
 import Cue from '../components/Cue.vue'
-import { dirname } from 'path';
 
 export default {
   components: {
@@ -78,7 +77,7 @@ export default {
   },
   created () {
     this.currentRound.sentences.forEach(sentence => {
-      let answerFormat = Array(getAnswerPromptCount(sentence.template)).fill('')
+      const answerFormat = Array(getAnswerPromptCount(sentence.template)).fill('')
       this.answers.push(answerFormat)
     })
   },
@@ -121,9 +120,9 @@ function answerStepValid (answers) {
 }
 
 function trimAnswers (answers) {
-  let trimmedAnswers = []
+  const trimmedAnswers = []
   answers.forEach(answer => {
-    let trimmedAnswer = []
+    const trimmedAnswer = []
     answer.forEach(str => trimmedAnswer.push(str.trim()))
 
     trimmedAnswers.push(trimmedAnswer)

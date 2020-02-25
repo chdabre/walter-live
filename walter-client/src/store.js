@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-let roomId = window.location.pathname.split('/').slice(-1)[0].toUpperCase()
+const roomId = window.location.pathname.split('/').slice(-1)[0].toUpperCase()
 let playerId = parseInt(window.sessionStorage.getItem(roomId))
 if (isNaN(playerId)) playerId = null
 
